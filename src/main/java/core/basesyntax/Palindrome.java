@@ -1,5 +1,8 @@
 package core.basesyntax;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Palindrome {
 
     /**
@@ -21,6 +24,12 @@ public class Palindrome {
      * <p>Результат: true</p>
      */
     public boolean isPalindrome(String text) {
-        return false;
+        StringBuilder sb = new StringBuilder();
+        Pattern pattern = Pattern.compile("\\d+|\\w+");
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            sb.append(matcher.group().toLowerCase());
+        }
+        return sb.toString().equals(sb.reverse().toString());
     }
 }
